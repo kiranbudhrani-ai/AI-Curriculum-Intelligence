@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Academic Integrity AI Course Signals</title>
+<style>
+:root{
+  --green:#005035;
+  --gold:#B9975B;
+  --pale:#E8F2ED;
+  --cream:#F7F3E8;
+  --border:#D8DEE6;
+  --text:#1F2933;
+  --muted:#64748B;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,Aptos,Arial,sans-serif;
+  color:var(--text);
+  background:#fff;
+}
+.wrap{
+  max-width:1120px;
+  margin:0 auto;
+  padding:34px 26px;
+}
+.hero{
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:30px;
+  background:linear-gradient(135deg,#fff 0%,#fff 56%,var(--pale) 100%);
+}
+h1{
+  margin:0;
+  color:var(--green);
+  font-size:44px;
+  letter-spacing:-.03em;
+}
+.subtitle{
+  margin:10px 0 0;
+  max-width:920px;
+  font-size:19px;
+  color:#334155;
+  line-height:1.45;
+}
+.takeaway{
+  margin-top:22px;
+  border-left:7px solid var(--gold);
+  background:var(--cream);
+  border-radius:14px;
+  padding:18px 20px;
+  font-size:20px;
+  line-height:1.45;
+}
+.metrics{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin-top:24px;
+}
+.metric{
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:22px;
+  background:#fff;
+  box-shadow:0 10px 22px rgba(15,23,42,.05);
+  min-height:150px;
+}
+.metric .num{
+  color:var(--green);
+  font-size:46px;
+  font-weight:950;
+  line-height:1;
+  letter-spacing:-.04em;
+}
+.metric .label{
+  margin-top:12px;
+  color:#334155;
+  font-size:16px;
+  line-height:1.28;
+  font-weight:850;
+}
+.metric .sub{
+  margin-top:8px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+}
+.panel{
+  margin-top:22px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 10px 22px rgba(15,23,42,.04);
+}
+.panel-header{
+  padding:20px 22px 10px;
+}
+.panel h2{
+  margin:0;
+  color:var(--green);
+  font-size:25px;
+}
+.panel p{
+  margin:6px 0 0;
+  color:#475569;
+  line-height:1.5;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+th,td{
+  padding:16px 22px;
+  border-top:1px solid var(--border);
+  text-align:left;
+}
+th{
+  background:#F8FAFC;
+  color:#334155;
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+td{font-size:18px}
+td.count{
+  text-align:right;
+  font-weight:950;
+  color:var(--green);
+  font-size:24px;
+}
+.note{
+  margin-top:22px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.5;
+  border-top:1px solid var(--border);
+  padding-top:18px;
+}
+.footer{
+  margin-top:22px;
+  color:var(--muted);
+  font-size:13px;
+}
+@media(max-width:920px){
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  h1{font-size:36px}
+}
+@media(max-width:560px){
+  .metrics{grid-template-columns:1fr}
+  .wrap{padding:20px 14px}
+  .hero{padding:22px}
+  h1{font-size:31px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<section class="hero">
+  <h1>Academic Integrity AI Course Signals</h1>
+  <p class="subtitle">Cross-checking AI-tagged academic integrity records with pre-2026 catalog AI-signal courses.</p>
+
+  <div class="takeaway">
+    <strong>Main takeaway:</strong> AI integrity records appear mostly outside courses that are formally labeled as AI courses in the catalog.
+  </div>
+</section>
+
+<section class="metrics" aria-label="Key metrics">
+  <div class="metric">
+    <div class="num">216</div>
+    <div class="label">AI integrity records</div>
+    <div class="sub">2024-2025 and 2025-2026</div>
+  </div>
+  <div class="metric">
+    <div class="num">65</div>
+    <div class="label">Distinct courses</div>
+    <div class="sub">with AI integrity records</div>
+  </div>
+  <div class="metric">
+    <div class="num">2</div>
+    <div class="label">Catalog overlaps</div>
+    <div class="sub">with pre-2026 catalog AI courses</div>
+  </div>
+  <div class="metric">
+    <div class="num">63</div>
+    <div class="label">Not catalog-labeled as AI</div>
+    <div class="sub">AI integrity courses outside formal catalog AI signals</div>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-header">
+    <h2>Course-level cross-check</h2>
+    <p>Records show volume. Courses show spread.</p>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th style="text-align:right">Course count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Distinct courses identified with AI integrity records</td>
+        <td class="count">65</td>
+      </tr>
+      <tr>
+        <td>Courses overlapping with pre-2026 catalog AI courses</td>
+        <td class="count">2</td>
+      </tr>
+      <tr>
+        <td>Courses not catalog-labeled as AI</td>
+        <td class="count">63</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="note">
+  <strong>Method note:</strong> Academic integrity records include cases tagged <em>SACR - Artificial Intelligence Used</em> from 2024-2025 and 2025-2026. Catalog comparison excludes 2026 effective-date courses because those courses do not yet have academic integrity case history in the provided data.
+</div>
+
+
+</div>
+</body>
+</html>
