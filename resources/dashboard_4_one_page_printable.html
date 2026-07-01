@@ -13,7 +13,7 @@ body { margin:0; background:#DDE3E8; color:var(--charcoal); font-family: Inter, 
 .masthead h1 { margin:0; font-size:21px; color:var(--green); letter-spacing:-.02em; }
 .masthead .sub { color:var(--gray); font-size:11px; margin-top:2px; }
 .masthead .date { text-align:right; font-size:11px; color:var(--gray); font-weight:700; }
-.kpi-strip { display:grid; grid-template-columns:repeat(6,1fr); gap:8px; margin-bottom:14px; }
+.kpi-strip { display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin-bottom:14px; }
 .kpi { border:1px solid var(--border); border-radius:8px; padding:8px 10px; text-align:center; }
 .kpi .num { font-size:19px; font-weight:900; color:var(--green); line-height:1; }
 .kpi.gold .num { color:var(--gold); }
@@ -61,8 +61,9 @@ td { border-bottom:1px solid #EEF1F5; padding:4px 5px; }
     <div class="kpi"><div class="num">67</div><div class="lbl">Tier 1 &middot; title</div></div>
     <div class="kpi gold"><div class="num">50</div><div class="lbl">Tier 2 &middot; description</div></div>
     <div class="kpi"><div class="num">46</div><div class="lbl">Effective in 2026</div></div>
-    <div class="kpi gold"><div class="num">51.7%</div><div class="lbl">Of dated growth is 2026</div></div>
+    <div class="kpi gold"><div class="num">51.7%</div><div class="lbl">2026 increase</div></div>
     <div class="kpi"><div class="num">6 / 8</div><div class="lbl">Colleges with signal</div></div>
+    <div class="kpi gold"><div class="num">26</div><div class="lbl">Disciplines represented</div></div>
   </div>
 
   <div class="body-grid">
@@ -70,16 +71,16 @@ td { border-bottom:1px solid #EEF1F5; padding:4px 5px; }
       <h2>AI-signal footprint by college</h2>
       <div class="legend"><span class="sw t1"></span>Tier 1 <span class="sw t2" style="margin-left:8px"></span>Tier 2</div>
       <table>
-        <thead><tr><th>College</th><th>Mix</th><th class="num-cell">Total</th><th class="num-cell">UG</th><th class="num-cell">Grad</th><th class="num-cell">Pen.</th><th class="num-cell">2026</th></tr></thead>
+        <thead><tr><th>College</th><th>Mix</th><th class="num-cell">Total</th><th class="num-cell">Types</th><th class="num-cell">UG</th><th class="num-cell">Grad</th><th class="num-cell">Pen.</th><th class="num-cell">2026</th></tr></thead>
         <tbody>
-          <tr><td>Computing &amp; Informatics</td><td><div class="mini-stacked"><span class="t1" style="width:61%"></span><span class="t2" style="width:39%"></span></div></td><td class="num-cell">59</td><td class="num-cell">21</td><td class="num-cell">38</td><td class="num-cell">13.3%</td><td class="num-cell">23</td></tr>
-          <tr><td>Engineering</td><td><div class="mini-stacked"><span class="t1" style="width:40%"></span><span class="t2" style="width:60%"></span></div></td><td class="num-cell">25</td><td class="num-cell">10</td><td class="num-cell">15</td><td class="num-cell">2.4%</td><td class="num-cell">1</td></tr>
-          <tr><td>Humanities, Earth &amp; Social Sciences</td><td><div class="mini-stacked"><span class="t1" style="width:56%"></span><span class="t2" style="width:44%"></span></div></td><td class="num-cell">18</td><td class="num-cell">13</td><td class="num-cell">5</td><td class="num-cell">0.8%</td><td class="num-cell">12</td></tr>
-          <tr><td>Business</td><td><div class="mini-stacked"><span class="t1" style="width:100%"></span></div></td><td class="num-cell">10</td><td class="num-cell">5</td><td class="num-cell">5</td><td class="num-cell">2.5%</td><td class="num-cell">8</td></tr>
-          <tr><td>Education</td><td><div class="mini-stacked"><span class="t1" style="width:25%"></span><span class="t2" style="width:75%"></span></div></td><td class="num-cell">4</td><td class="num-cell">1</td><td class="num-cell">3</td><td class="num-cell">0.6%</td><td class="num-cell">2</td></tr>
-          <tr><td>Arts + Architecture</td><td><div class="mini-stacked"><span class="t2" style="width:100%"></span></div></td><td class="num-cell">1</td><td class="num-cell">0</td><td class="num-cell">1</td><td class="num-cell">0.2%</td><td class="num-cell">0</td></tr>
-          <tr><td style="color:var(--gray)">Science</td><td><div class="mini-stacked"></div></td><td class="num-cell" style="color:var(--gray)">0</td><td class="num-cell">&mdash;</td><td class="num-cell">&mdash;</td><td class="num-cell">0.0%</td><td class="num-cell">0</td></tr>
-          <tr><td style="color:var(--gray)">Health &amp; Human Services</td><td><div class="mini-stacked"></div></td><td class="num-cell" style="color:var(--gray)">0</td><td class="num-cell">&mdash;</td><td class="num-cell">&mdash;</td><td class="num-cell">0.0%</td><td class="num-cell">0</td></tr>
+          <tr><td>Computing &amp; Informatics</td><td><div class="mini-stacked"><span class="t1" style="width:61%"></span><span class="t2" style="width:39%"></span></div></td><td class="num-cell">59</td><td class="num-cell">6</td><td class="num-cell">21</td><td class="num-cell">38</td><td class="num-cell">13.3%</td><td class="num-cell">23</td></tr>
+          <tr><td>Engineering</td><td><div class="mini-stacked"><span class="t1" style="width:40%"></span><span class="t2" style="width:60%"></span></div></td><td class="num-cell">25</td><td class="num-cell">6</td><td class="num-cell">10</td><td class="num-cell">15</td><td class="num-cell">2.4%</td><td class="num-cell">1</td></tr>
+          <tr><td>Humanities, Earth &amp; Social Sciences</td><td><div class="mini-stacked"><span class="t1" style="width:56%"></span><span class="t2" style="width:44%"></span></div></td><td class="num-cell">18</td><td class="num-cell">5</td><td class="num-cell">13</td><td class="num-cell">5</td><td class="num-cell">0.8%</td><td class="num-cell">12</td></tr>
+          <tr><td>Business</td><td><div class="mini-stacked"><span class="t1" style="width:100%"></span></div></td><td class="num-cell">10</td><td class="num-cell">5</td><td class="num-cell">5</td><td class="num-cell">5</td><td class="num-cell">2.5%</td><td class="num-cell">8</td></tr>
+          <tr><td>Education</td><td><div class="mini-stacked"><span class="t1" style="width:25%"></span><span class="t2" style="width:75%"></span></div></td><td class="num-cell">4</td><td class="num-cell">3</td><td class="num-cell">1</td><td class="num-cell">3</td><td class="num-cell">0.6%</td><td class="num-cell">2</td></tr>
+          <tr><td>Arts + Architecture</td><td><div class="mini-stacked"><span class="t2" style="width:100%"></span></div></td><td class="num-cell">1</td><td class="num-cell">1</td><td class="num-cell">0</td><td class="num-cell">1</td><td class="num-cell">0.2%</td><td class="num-cell">0</td></tr>
+          <tr><td style="color:var(--gray)">Science</td><td><div class="mini-stacked"></div></td><td class="num-cell" style="color:var(--gray)">0</td><td class="num-cell">0</td><td class="num-cell">&mdash;</td><td class="num-cell">&mdash;</td><td class="num-cell">0.0%</td><td class="num-cell">0</td></tr>
+          <tr><td style="color:var(--gray)">Health &amp; Human Services</td><td><div class="mini-stacked"></div></td><td class="num-cell" style="color:var(--gray)">0</td><td class="num-cell">0</td><td class="num-cell">&mdash;</td><td class="num-cell">&mdash;</td><td class="num-cell">0.0%</td><td class="num-cell">0</td></tr>
         </tbody>
       </table>
 
@@ -103,7 +104,7 @@ td { border-bottom:1px solid #EEF1F5; padding:4px 5px; }
 
     <div>
       <h2>Leadership read</h2>
-      <div class="callout-box"><strong>What this shows:</strong> A visible and embedded AI footprint across 6 of 8 colleges, with 2026 alone accounting for 51.7% of all dated growth since 2017.</div>
+      <div class="callout-box"><strong>What this shows:</strong> A visible and embedded AI footprint across 6 of 8 colleges and 26 disciplines/course types.</div>
       <div class="callout-box"><strong>What this doesn't show:</strong> Enrollment, section capacity, student demand, faculty readiness, or instructional depth.</div>
       <div class="callout-box"><strong>Why Tier 2 matters:</strong> 50 of 117 records mention AI only in the description &mdash; a title-only scan would miss nearly half the footprint.</div>
 
@@ -119,14 +120,15 @@ td { border-bottom:1px solid #EEF1F5; padding:4px 5px; }
       <table>
         <tbody>
           <tr><td>Dated records</td><td class="num-cell">89</td></tr>
-          <tr><td>Undated records</td><td class="num-cell">28 <span style="color:var(--gray);font-weight:400">(25 grad / 3 UG)</span></td></tr>
+          <tr><td>Undated records</td><td class="num-cell">28</td></tr>
           <tr><td>Distinct course titles</td><td class="num-cell">79 <span style="color:var(--gray);font-weight:400">of 117 records</span></td></tr>
+          <tr><td>Disciplines represented</td><td class="num-cell">26</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <div class="footnote">Methodology: AI-signal records read from four tabs (UG/Grad &times; Title/Description) across the two current course-signal spreadsheets. Tier 1 = AI in course title; Tier 2 = AI in description only. Counts are course records as represented in the source sheets, not enrollments, and not deduplicated across UG/Grad pairings. 1 legacy record (2007&ndash;2009, Computing &amp; Informatics) is included in totals but excluded from the annual chart above.</div>
+  <div class="footnote">Methodology: AI-signal records read from four tabs (UG/Grad &times; Title/Description) across the two current course-signal spreadsheets. Tier 1 = AI in course title; Tier 2 = AI in description only. Counts are course records as represented in the source sheets, not enrollments, and not deduplicated across UG/Grad pairings.</div>
 
 </div>
 </body>
