@@ -20,14 +20,14 @@ body { margin:0; background:#F7F9FA; color:var(--charcoal); font-family: Inter, 
 .kpi .num { font-size:32px; font-weight:850; color:var(--green); line-height:1; }
 .kpi.gold .num { color:var(--gold); }
 .kpi .label { margin-top:6px; font-weight:800; font-size:13px; color:#334155; }
-.main-grid { display:grid; grid-template-columns:1.35fr .95fr; gap:16px; margin-top:16px; }
+.main-grid { display:grid; grid-template-columns:1.05fr 1.15fr; gap:16px; margin-top:16px; }
 .panel { border:1px solid var(--border); border-radius:18px; background:#fff; padding:20px 22px; box-shadow:0 8px 18px rgba(15,23,42,.04); }
 .panel h3 { margin:0 0 4px; font-size:16px; color:var(--green); }
 .panel .sub { color:var(--gray); font-size:12px; margin:0 0 14px; }
 .legend { display:flex; gap:14px; font-size:12px; color:var(--gray); font-weight:700; margin-bottom:10px; }
 .sw { display:inline-block; width:11px; height:11px; border-radius:3px; margin-right:5px; vertical-align:-1px; }
 .sw.t1 { background:var(--green); } .sw.t2 { background:var(--gold); }
-.college-row { display:grid; grid-template-columns:180px 132px .82fr 64px; align-items:center; gap:12px; padding:8px 0; border-bottom:1px solid #EDF1F5; font-size:13px; }
+.college-row { display:grid; grid-template-columns:165px 126px .72fr 52px; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid #EDF1F5; font-size:12.5px; }
 .college-row:last-child { border-bottom:0; }
 .college-name { font-weight:800; }
 .badge { display:inline-block; font-size:10px; font-weight:850; padding:2px 7px; border-radius:999px; background:var(--pale-green); color:var(--green); margin-left:6px; }
@@ -52,6 +52,67 @@ body { margin:0; background:#F7F9FA; color:var(--charcoal); font-family: Inter, 
 .split-card { border:1px solid var(--border); border-radius:14px; padding:14px; background:#FAFBFC; text-align:center; }
 .split-card .n { font-size:26px; font-weight:900; color:var(--green); }
 .split-card .l { font-size:12px; color:var(--gray); font-weight:700; margin-top:2px; }
+
+.growth-card{
+  margin-top:18px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:16px 16px 14px;
+  background:#FAFBFC;
+}
+.growth-card .chart-title-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:3px;
+}
+.growth-card h4{
+  margin:0;
+  font-size:14px;
+  color:var(--green);
+}
+.growth-badge{
+  display:inline-block;
+  white-space:nowrap;
+  border-radius:999px;
+  background:var(--light-gold);
+  color:#7A5C22;
+  border:1px solid #E7D3A0;
+  padding:5px 9px;
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:.02em;
+}
+.growth-card .chart-sub{
+  margin:0 0 10px;
+  font-size:11.5px;
+  color:var(--gray);
+  line-height:1.35;
+}
+.growth-svg{
+  width:100%;
+  height:auto;
+  display:block;
+}
+.axis-label{
+  font-size:10px;
+  fill:#64748B;
+  font-weight:700;
+}
+.point-label{
+  font-size:10px;
+  fill:#334155;
+  font-weight:850;
+}
+.annotation{
+  margin-top:8px;
+  font-size:12px;
+  color:#334155;
+  line-height:1.35;
+}
+.annotation strong{color:var(--green)}
+
 .footer-note { margin-top:14px; padding-top:12px; border-top:1px solid var(--border); color:var(--gray); font-size:11.5px; }
 @media(max-width:1000px){ .main-grid{grid-template-columns:1fr;} .kpis{grid-template-columns:repeat(2,1fr);} .hero{flex-direction:column;} .hero-right{text-align:left;} }
 </style>
@@ -74,7 +135,7 @@ body { margin:0; background:#F7F9FA; color:var(--charcoal); font-family: Inter, 
     <div class="kpi"><div class="num">67</div><div class="label">Tier 1 &mdash; AI in title</div></div>
     <div class="kpi gold"><div class="num">50</div><div class="label">Tier 2 &mdash; AI in description</div></div>
     <div class="kpi"><div class="num">46</div><div class="label">Effective in 2026</div></div>
-    <div class="kpi gold"><div class="num">51.7%</div><div class="label">2026 increase</div></div>
+    <div class="kpi gold"><div class="num">51.7%</div><div class="label">Dated records added in 2026</div></div>
     <div class="kpi"><div class="num">6 <span style="font-size:16px;color:var(--gray);font-weight:700">/8</span></div><div class="label">Colleges with AI signals</div></div>
     <div class="kpi gold"><div class="num">26</div><div class="label">Disciplines represented</div></div>
   </section>
@@ -108,6 +169,29 @@ body { margin:0; background:#F7F9FA; color:var(--charcoal); font-family: Inter, 
         <p><strong>Colleges are at different adoption stages.</strong> The pattern shows accelerating, expanding, and emerging AI curriculum activity across colleges, suggesting that development is not happening uniformly but is advancing at different speeds and in different forms.</p>
         <p><strong>Title visibility understates the footprint.</strong> 50 of 117 records (Tier 2) mention AI in the course description, not the title &mdash; meaning a title-only scan of the catalog would miss nearly half of where AI activity already lives.</p>
       </div>
+
+      <div class="growth-card">
+        <div class="chart-title-row">
+          <h4>Cumulative AI-signal growth by effective year</h4>
+          <span class="growth-badge">51.7% in 2026</span>
+        </div>
+        <p class="chart-sub">Dated records only; excludes records with unknown or unusable effective dates.</p>
+        <svg class="growth-svg" viewBox="0 0 480 190" role="img" aria-label="Cumulative AI-signal growth by effective year">
+  <rect x="0" y="0" width="480" height="190" fill="#FAFBFC"/>
+  <line x1="34" y1="156.0" x2="462" y2="156.0" stroke="#E2E8F0" stroke-width="1"/><text x="26" y="159.0" text-anchor="end" class="axis-label">0</text><line x1="34" y1="108.7" x2="462" y2="108.7" stroke="#E2E8F0" stroke-width="1"/><text x="26" y="111.7" text-anchor="end" class="axis-label">30</text><line x1="34" y1="61.3" x2="462" y2="61.3" stroke="#E2E8F0" stroke-width="1"/><text x="26" y="64.3" text-anchor="end" class="axis-label">60</text><line x1="34" y1="14.0" x2="462" y2="14.0" stroke="#E2E8F0" stroke-width="1"/><text x="26" y="17.0" text-anchor="end" class="axis-label">90</text>
+  <line x1="34" y1="156" x2="462" y2="156" stroke="#CBD5E1" stroke-width="1"/>
+  <polyline points="34.0,151.3 81.6,145.0 129.1,141.8 176.7,133.9 224.2,129.2 271.8,118.1 319.3,111.8 366.9,96.0 414.4,88.2 462.0,15.6" fill="none" stroke="#005035" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  
+<line x1="462.0" y1="14" x2="462.0" y2="156" stroke="#B9975B" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="458.0" y="5.6" text-anchor="end" class="point-label">89</text>
+<text x="414.4" y="78.2" text-anchor="middle" class="point-label">43</text>
+
+  <circle cx="34.0" cy="151.3" r="3.4" fill="#005035" stroke="#fff" stroke-width="2"/><circle cx="81.6" cy="145.0" r="3.4" fill="#005035" stroke="#fff" stroke-width="2"/><circle cx="129.1" cy="141.8" r="3.4" fill="#005035" stroke="#fff" stroke-width="2"/><circle cx="176.7" cy="133.9" r="3.4" fill="#005035" stroke="#fff" stroke-width="2"/><circle cx="224.2" cy="129.2" r="3.4" fill="#005035" stroke="#fff" stroke-width="2"/><circle cx="271.8" cy="118.1" r="3.4" fill="#005035" stroke="#fff" stroke-width="2"/><circle cx="319.3" cy="111.8" r="3.4" fill="#005035" stroke="#fff" stroke-width="2"/><circle cx="366.9" cy="96.0" r="3.4" fill="#005035" stroke="#fff" stroke-width="2"/><circle cx="414.4" cy="88.2" r="3.4" fill="#005035" stroke="#fff" stroke-width="2"/><circle cx="462.0" cy="15.6" r="5" fill="#B9975B" stroke="#fff" stroke-width="2"/>
+  <text x="34.0" y="180" text-anchor="middle" class="axis-label">2017</text><text x="176.7" y="180" text-anchor="middle" class="axis-label">2020</text><text x="319.3" y="180" text-anchor="middle" class="axis-label">2023</text><text x="462.0" y="180" text-anchor="middle" class="axis-label">2026</text>
+</svg>
+        <div class="annotation"><strong>51.7% of dated AI-signal records were added in 2026</strong> &mdash; 46 of 89 dated records.</div>
+      </div>
+
     </section>
   </div>
 
