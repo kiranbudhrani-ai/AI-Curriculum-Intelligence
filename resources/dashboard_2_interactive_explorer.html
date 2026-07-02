@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Course Explorer — UNC Charlotte</title>
+<style>
+:root { --green:#005035; --gold:#B9975B; --light-gold:#F4E7C5; --pale-green:#E8F2ED; --charcoal:#1F2933; --gray:#64748B; --border:#D8DEE6; --bg:#FFFFFF; }
+* { box-sizing:border-box; }
+body { margin:0; background:#F7F9FA; color:var(--charcoal); font-family: Inter, Aptos, Arial, sans-serif; line-height:1.35; }
+.wrap { max-width:1320px; margin:0 auto; padding:28px 32px 50px; }
+.hero { border:1px solid var(--border); border-radius:20px; padding:24px 28px; background:linear-gradient(135deg,#fff 0%, #fff 55%, var(--pale-green) 100%); }
+.hero h1 { margin:0; font-size:28px; letter-spacing:-.03em; color:var(--green); }
+.hero p { margin:8px 0 0; max-width:760px; color:#334155; font-size:14px; }
+.controls { display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr auto; gap:12px; margin:18px 0; align-items:end; }
+.field label { display:block; font-size:11px; font-weight:850; text-transform:uppercase; letter-spacing:.05em; color:var(--gray); margin-bottom:6px; }
+.field input, .field select { width:100%; padding:9px 11px; border:1px solid var(--border); border-radius:10px; font-size:14px; font-family:inherit; background:#fff; color:var(--charcoal); }
+.field input:focus, .field select:focus { outline:2px solid var(--green); outline-offset:1px; }
+.reset-btn { padding:9px 16px; border:1px solid var(--border); border-radius:10px; background:#fff; color:var(--green); font-weight:800; font-size:13px; cursor:pointer; height:38px; }
+.reset-btn:hover { background:var(--pale-green); }
+.summary-strip { display:flex; gap:16px; align-items:center; margin-bottom:16px; flex-wrap:wrap; }
+.summary-pill { border:1px solid var(--border); border-radius:999px; padding:8px 16px; background:#fff; font-size:13px; font-weight:800; color:var(--green); }
+.summary-pill span { color:var(--gold); }
+.main-grid { display:grid; grid-template-columns:280px 1fr; gap:16px; align-items:start; }
+.panel { border:1px solid var(--border); border-radius:16px; background:#fff; padding:18px 20px; box-shadow:0 8px 18px rgba(15,23,42,.04); }
+.panel h3 { margin:0 0 12px; font-size:14px; color:var(--green); text-transform:uppercase; letter-spacing:.04em; }
+.bar-row { margin-bottom:10px; }
+.bar-row .rlabel { display:flex; justify-content:space-between; font-size:12.5px; font-weight:750; margin-bottom:3px; }
+.bar-row .rlabel b { font-weight:850; }
+.bar-track { height:14px; background:#EEF2F6; border-radius:999px; overflow:hidden; }
+.bar-fill { height:100%; background:linear-gradient(90deg,var(--green),#2E7D32); border-radius:999px; transition:width .25s ease; }
+table { width:100%; border-collapse:collapse; font-size:13.5px; }
+thead th { position:sticky; top:0; background:#fff; text-align:left; color:#475569; border-bottom:2px solid var(--border); padding:9px 8px; font-size:11px; text-transform:uppercase; letter-spacing:.05em; cursor:pointer; user-select:none; }
+thead th:hover { color:var(--green); }
+tbody td { border-bottom:1px solid #EDF1F5; padding:9px 8px; vertical-align:middle; }
+tbody tr:hover { background:#FAFBFC; }
+.tier-pill { display:inline-block; font-size:11px; font-weight:850; padding:2px 8px; border-radius:999px; }
+.tier-pill.t1 { background:var(--pale-green); color:var(--green); }
+.tier-pill.t2 { background:var(--light-gold); color:#7A5C22; }
+.code { font-variant-numeric:tabular-nums; font-weight:800; }
+.table-wrap { max-height:640px; overflow:auto; border-radius:10px; }
+.empty-state { text-align:center; padding:40px; color:var(--gray); }
+@media(max-width:900px){ .main-grid{grid-template-columns:1fr;} .controls{grid-template-columns:1fr 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section class="hero">
+    <h1>AI Course Explorer</h1>
+    <p>Filter and search the 117 AI-signal course records across the 2026 undergraduate and graduate catalog. Tier 1 means AI appears in the course title; Tier 2 means AI appears in the description.</p>
+  </section>
+
+  <div class="controls">
+    <div class="field">
+      <label for="search">Search code or title</label>
+      <input id="search" type="text" placeholder="e.g. ITAI, Agentic, Machine Vision...">
+    </div>
+    <div class="field">
+      <label for="level">Level</label>
+      <select id="level"><option value="">All levels</option><option>Undergraduate</option><option>Graduate</option></select>
+    </div>
+    <div class="field">
+      <label for="tier">Tier</label>
+      <select id="tier"><option value="">All tiers</option><option>Tier 1</option><option>Tier 2</option></select>
+    </div>
+    <div class="field">
+      <label for="college">College</label>
+      <select id="college"><option value="">All colleges</option></select>
+    </div>
+    <button class="reset-btn" id="resetBtn">Reset filters</button>
+  </div>
+
+  <div class="summary-strip">
+    <div class="summary-pill">Showing <span id="shownCount">117</span> of 117 records</div>
+    <div class="summary-pill"><span id="t1Count">67</span> Tier 1</div>
+    <div class="summary-pill"><span id="t2Count">50</span> Tier 2</div>
+    <div class="summary-pill"><span id="ugCount">50</span> Undergraduate</div>
+    <div class="summary-pill"><span id="gradCount">67</span> Graduate</div>
+  </div>
+
+  <div class="main-grid">
+    <section class="panel">
+      <h3>Records by college (filtered)</h3>
+      <div id="collegeBars"></div>
+    </section>
+
+    <section class="panel">
+      <h3 style="display:flex;justify-content:space-between;align-items:center">
+        <span>Course records</span>
+        <span style="font-size:11px;color:var(--gray);text-transform:none;font-weight:600">Click a column header to sort</span>
+      </h3>
+      <div class="table-wrap">
+        <table id="resultsTable">
+          <thead>
+            <tr>
+              <th data-key="level">Level</th>
+              <th data-key="tier">Tier</th>
+              <th data-key="college">College</th>
+              <th data-key="course_type">Course type</th>
+              <th data-key="code">Code</th>
+              <th data-key="name">Name</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+        <div class="empty-state" id="emptyState" style="display:none">No records match these filters.</div>
+      </div>
+    </section>
+  </div>
+
+</div>
+
+<script>
+const RECORDS = [{"level": "Graduate", "tier": "Tier 2", "college": "Arts + Architecture", "course_type": "Architecture", "code": "ARCH 7011", "name": "Research Topic: Design Computation"}, {"level": "Graduate", "tier": "Tier 1", "college": "Business", "course_type": "Business Administration", "code": "MBAD 6167", "name": "AI: Ethics, Law, and the Business Environment"}, {"level": "Graduate", "tier": "Tier 1", "college": "Business", "course_type": "Business Administration", "code": "MBAD 6214", "name": "AI for Business Competitive Advantage"}, {"level": "Graduate", "tier": "Tier 1", "college": "Business", "course_type": "Business Administration", "code": "MBAD 6285", "name": "AI for Business Decisions and Consumer Insights"}, {"level": "Graduate", "tier": "Tier 1", "college": "Business", "course_type": "Economics", "code": "ECON 5182", "name": "Economics of Artificial Intelligence"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Business", "course_type": "Economics", "code": "ECON 4182", "name": "Economics of Artificial Intelligence"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Business", "course_type": "Economics", "code": "FINN 4162", "name": "Innovations in Financial Technology and AI"}, {"level": "Graduate", "tier": "Tier 1", "college": "Business", "course_type": "Finance", "code": "FINN 6220", "name": "Advanced Financial Modeling with AI"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Business", "course_type": "Management Information Systems", "code": "INFO 3239", "name": "Artificial Intelligence in Business"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Business", "course_type": "Management Information Systems", "code": "INFO 4214", "name": "AI for Business Competitive Advantage"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Business", "course_type": "Marketing", "code": "MKTG 3219", "name": "AI in Marketing"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Artificial Intelligence", "code": "ITAI 5153", "name": "Introduction to Artificial Intelligence and Ethics"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Artificial Intelligence", "code": "ITAI 5154", "name": "AI-Driven Trustworthy Software Development"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Artificial Intelligence", "code": "ITAI 5160", "name": "Databases and Cloud for Artificial Intelligence"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Artificial Intelligence", "code": "ITAI 6155", "name": "Artificial Intelligence Development Projects"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Artificial Intelligence", "code": "ITAI 6991", "name": "Artificial Intelligence Thesis"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Artificial Intelligence", "code": "ITAI 1600", "name": "Artificial Intelligence Literacy for Professional Success"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Artificial Intelligence", "code": "ITAI 2153", "name": "Introduction to Artificial Intelligence and Ethics"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Artificial Intelligence", "code": "ITAI 3155", "name": "Artificial Intelligence Systems Projects"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Artificial Intelligence", "code": "ITAI 4154", "name": "AI-Driven Trustworthy Software Development"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Artificial Intelligence", "code": "ITAI 4155", "name": "Artificial Intelligence Development Projects"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Artificial Intelligence", "code": "ITAI 4160", "name": "Databases and Cloud for Artificial Intelligence"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 5153", "name": "Applied Artificial Intelligence"}, {"level": "Graduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 5230", "name": "Introduction to Game Design and Development"}, {"level": "Graduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 5231", "name": "Advanced Game Design and Development"}, {"level": "Graduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 5232", "name": "Game Design and Development Studio"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 5236", "name": "Artificial Intelligence for Computer Games"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 6050", "name": "Topics in Artificial Intelligence"}, {"level": "Graduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 6101", "name": "Natural Language Processing"}, {"level": "Graduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 6102", "name": "Deep Reinforcement Learning"}, {"level": "Graduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 6145", "name": "Parallel Computing"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 6150", "name": "Foundations of Artificial Intelligence"}, {"level": "Graduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 6166", "name": "Computer Communications and Networks"}, {"level": "Graduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 6216", "name": "Introduction to Cognitive Science"}, {"level": "Graduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 6617", "name": "Computational Human Behavior Modeling"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 8050", "name": "Topics in Artificial Intelligence"}, {"level": "Graduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 8101", "name": "Natural Language Processing"}, {"level": "Graduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 8102", "name": "Deep Reinforcement Learning"}, {"level": "Graduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 8141", "name": "Computer System and Architecture: Performance and Implementation"}, {"level": "Graduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 8145", "name": "Parallel Computing"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 8150", "name": "Foundations of Artificial Intelligence"}, {"level": "Graduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 8166", "name": "Computer Communications and Networks"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITIS 5270", "name": "Artificial Intelligence Risk Management"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITIS 5271", "name": "Secure and Trustworthy Artificial Intelligence"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 3152", "name": "Symbolic Programming"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 3153", "name": "Introduction to Artificial Intelligence"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 3216", "name": "Introduction to Cognitive Science"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 4101", "name": "Introduction to Natural Language Processing"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 4145", "name": "Parallel Programming"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 4230", "name": "Introduction to Game Design and Development"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 4231", "name": "Advanced Game Design and Development"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 4232", "name": "Game Design and Development Studio"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Computer Science", "code": "ITCS 4236", "name": "Artificial Intelligence for Computer Games"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Computing and Informatics", "code": "ITSC 3688", "name": "Computing and AI: Ethics, Society & Communication"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Data Science and Business Analytics", "code": "DSBA 6165", "name": "Artificial Intelligence and Deep Learning"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Data Science and Business Analytics", "code": "DSBA 6171", "name": "Data Engineering for AI"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Data Science and Business Analytics", "code": "DSBA 6180", "name": "AI and Model Risk Management"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Data Science and Business Analytics", "code": "DSBA 6335", "name": "Agentic AI"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Data Science and Business Analytics", "code": "DTSC 8140", "name": "Fundamentals of Artificial Intelligence"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Health Informatics and Analytics", "code": "HCIP 6275", "name": "AI in Healthcare"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Software and Information Systems", "code": "ITIS 5164", "name": "AI-Assisted Software Engineering"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Software and Information Systems", "code": "ITIS 5360", "name": "Human-Centered AI"}, {"level": "Graduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Software and Information Systems", "code": "ITIS 6216", "name": "Introduction to Cognitive Science"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Software and Information Systems", "code": "ITIS 6336", "name": "Software Engineering for AI-Enabled Systems"}, {"level": "Graduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Software and Information Systems", "code": "ITIS 8336", "name": "Software Engineering for AI-Enabled Systems"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Computing & Informatics", "course_type": "Software and Information Systems", "code": "ITIS 3216", "name": "Introduction to Cognitive Science"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Software and Information Systems", "code": "ITIS 4164", "name": "AI-Assisted Software Engineering"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Software and Information Systems", "code": "ITIS 4270", "name": "Artificial Intelligence Risk Management"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Software and Information Systems", "code": "ITIS 4271", "name": "Secure and Trustworthy Artificial Intelligence"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Computing & Informatics", "course_type": "Software and Information Systems", "code": "ITIS 4360", "name": "Human-Centered Artificial Intelligence"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Education", "course_type": "Education", "code": "EDUC 4293", "name": "Universal Design: Considerations for Technology and Society"}, {"level": "Graduate", "tier": "Tier 2", "college": "Education", "course_type": "Education: Learning, Design, and Technology", "code": "ELDT 6155", "name": "Personalized Learning with Innovative Technologies"}, {"level": "Graduate", "tier": "Tier 2", "college": "Education", "course_type": "Education: Learning, Design, and Technology", "code": "ELDT 8155", "name": "Personalized Learning with Innovative Technologies"}, {"level": "Graduate", "tier": "Tier 1", "college": "Education", "course_type": "Middle, Secondary, and K-12 Education", "code": "MDSK 6262", "name": "AI and EdTech in the Classroom"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Engineering", "course_type": "Construction Management", "code": "CMET 4135", "name": "Construction Technologies and Innovation"}, {"level": "Graduate", "tier": "Tier 1", "college": "Engineering", "course_type": "Electrical and Computer Engineering", "code": "ECGR 5103", "name": "Machine Vision, AI and Image Processing"}, {"level": "Graduate", "tier": "Tier 2", "college": "Engineering", "course_type": "Electrical and Computer Engineering", "code": "ECGR 5105", "name": "Introduction to Machine Learning"}, {"level": "Graduate", "tier": "Tier 1", "college": "Engineering", "course_type": "Electrical and Computer Engineering", "code": "ECGR 5115", "name": "Convex Optimization and AI Applications"}, {"level": "Graduate", "tier": "Tier 1", "college": "Engineering", "course_type": "Electrical and Computer Engineering", "code": "ECGR 5116", "name": "Artificial Intelligence for Biomedical Applications"}, {"level": "Graduate", "tier": "Tier 1", "college": "Engineering", "course_type": "Electrical and Computer Engineering", "code": "ECGR 5117", "name": "AI for Robotics and Automation"}, {"level": "Graduate", "tier": "Tier 1", "college": "Engineering", "course_type": "Electrical and Computer Engineering", "code": "ECGR 6119", "name": "Applied Artificial Intelligence"}, {"level": "Graduate", "tier": "Tier 1", "college": "Engineering", "course_type": "Electrical and Computer Engineering", "code": "ECGR 8119", "name": "Applied Artificial Intelligence"}, {"level": "Graduate", "tier": "Tier 2", "college": "Engineering", "course_type": "Electrical and Computer Engineering", "code": "ITCS 6116", "name": "Optimization for Machine Learning"}, {"level": "Graduate", "tier": "Tier 2", "college": "Engineering", "course_type": "Electrical and Computer Engineering", "code": "ITCS 8116", "name": "Optimization for Machine Learning"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Engineering", "course_type": "Electrical and Computer Engineering", "code": "ECGR 3105", "name": "Introduction to Machine Learning"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Engineering", "course_type": "Electrical and Computer Engineering", "code": "ECGR 4103", "name": "Machine Vision, AI and Image Processing"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Engineering", "course_type": "Electrical and Computer Engineering", "code": "ECGR 4105", "name": "Introduction to Machine Learning"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Engineering", "course_type": "Electrical and Computer Engineering", "code": "ECGR 4115", "name": "Convex Optimization and AI Applications"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Engineering", "course_type": "Electrical and Computer Engineering", "code": "ECGR 4116", "name": "Artificial Intelligence for Biomedical Applications"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Engineering", "course_type": "Electrical and Computer Engineering", "code": "ECGR 4117", "name": "AI for Robotics and Automation"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Engineering", "course_type": "Electromechanical Engineering Technology", "code": "ETEM 4131", "name": "Intelligent Industrial Systems"}, {"level": "Graduate", "tier": "Tier 2", "college": "Engineering", "course_type": "Engineering Management", "code": "EMGT 5150", "name": "Leadership Skills for Engineers"}, {"level": "Graduate", "tier": "Tier 2", "college": "Engineering", "course_type": "Engineering Management", "code": "EMGT 5170", "name": "Total Quality Systems"}, {"level": "Graduate", "tier": "Tier 2", "college": "Engineering", "course_type": "Engineering Management", "code": "EMGT 5963", "name": "Energy Systems Planning"}, {"level": "Graduate", "tier": "Tier 2", "college": "Engineering", "course_type": "Engineering Management", "code": "EMGT 6905", "name": "Designed Experimentation"}, {"level": "Graduate", "tier": "Tier 2", "college": "Engineering", "course_type": "Engineering Management", "code": "EMGT 6910", "name": "Forecasting Techniques, Methodologies, and Practice"}, {"level": "Graduate", "tier": "Tier 2", "college": "Engineering", "course_type": "Engineering Management", "code": "EMGT 6965", "name": "Energy Analytics"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Engineering", "course_type": "Mechanical Engineering", "code": "MEGR 3283", "name": "Practical Applications of Precision Engineering and Metrology"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Engineering", "course_type": "Systems Engineering", "code": "SEGR 2111", "name": "Introduction to Engineering Management"}, {"level": "Graduate", "tier": "Tier 1", "college": "Humanities, Earth & Social Sciences", "course_type": "Anthropology", "code": "ANTH 5625", "name": "Anthropological Approaches to AI"}, {"level": "Graduate", "tier": "Tier 2", "college": "Humanities, Earth & Social Sciences", "course_type": "Anthropology", "code": "ANTH 5630", "name": "Spatial Analysis and Anthropology"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Humanities, Earth & Social Sciences", "course_type": "Anthropology", "code": "ANTH 4625", "name": "Anthropological Approaches to AI"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Humanities, Earth & Social Sciences", "course_type": "Anthropology", "code": "ANTH 4630", "name": "Spatial Analysis and Anthropology"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Humanities, Earth & Social Sciences", "course_type": "Human-Centered AI", "code": "HCAI 1100", "name": "AI Fundamentals and Literacy for All"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Humanities, Earth & Social Sciences", "course_type": "Human-Centered AI", "code": "HCAI 2100", "name": "Computing, Labor, and Power in History and Society"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Humanities, Earth & Social Sciences", "course_type": "Human-Centered AI", "code": "HCAI 2101", "name": "AI Application and Impact Across Disciplines"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Humanities, Earth & Social Sciences", "course_type": "Human-Centered AI", "code": "HCAI 3111", "name": "HCAI Social Science Applied"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Humanities, Earth & Social Sciences", "course_type": "Human-Centered AI", "code": "HCAI 3112", "name": "Applied Humanities in Artificial Intelligence Studies"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Humanities, Earth & Social Sciences", "course_type": "Human-Centered AI", "code": "HCAI 4600", "name": "HCAI Capstone"}, {"level": "Graduate", "tier": "Tier 2", "college": "Humanities, Earth & Social Sciences", "course_type": "Philosophy", "code": "PHIL 6340", "name": "Philosophy of Mind"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Humanities, Earth & Social Sciences", "course_type": "Philosophy", "code": "PHIL 3224", "name": "Data Ethics"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Humanities, Earth & Social Sciences", "course_type": "Philosophy", "code": "PHIL 3255", "name": "Philosophy of Artificial Intelligence"}, {"level": "Graduate", "tier": "Tier 2", "college": "Humanities, Earth & Social Sciences", "course_type": "Psychology", "code": "PSYC 6216", "name": "Introduction to Cognitive Science"}, {"level": "Graduate", "tier": "Tier 2", "college": "Humanities, Earth & Social Sciences", "course_type": "Psychology", "code": "PSYC 6617", "name": "Computational Human Behavior Modeling"}, {"level": "Undergraduate", "tier": "Tier 2", "college": "Humanities, Earth & Social Sciences", "course_type": "Psychology", "code": "PSYC 3216", "name": "Introduction to Cognitive Science"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Humanities, Earth & Social Sciences", "course_type": "Writing, Rhetoric, and Digital Studies", "code": "WRDS 3160", "name": "AI in the Public Imagination"}, {"level": "Undergraduate", "tier": "Tier 1", "college": "Humanities, Earth & Social Sciences", "course_type": "Writing, Rhetoric, and Digital Studies", "code": "WRDS 3210", "name": "Foundations in Human-AI Writing: Prompting Partnerships"}];
+
+const els = {
+  search: document.getElementById('search'),
+  level: document.getElementById('level'),
+  tier: document.getElementById('tier'),
+  college: document.getElementById('college'),
+  resetBtn: document.getElementById('resetBtn'),
+  body: document.getElementById('resultsBody'),
+  empty: document.getElementById('emptyState'),
+  shownCount: document.getElementById('shownCount'),
+  t1Count: document.getElementById('t1Count'),
+  t2Count: document.getElementById('t2Count'),
+  ugCount: document.getElementById('ugCount'),
+  gradCount: document.getElementById('gradCount'),
+  collegeBars: document.getElementById('collegeBars'),
+};
+
+// Populate college dropdown
+const colleges = [...new Set(RECORDS.map(r => r.college))].sort();
+colleges.forEach(c => {
+  const opt = document.createElement('option');
+  opt.value = c; opt.textContent = c;
+  els.college.appendChild(opt);
+});
+
+let sortKey = null;
+let sortDir = 1;
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function applyFilters() {
+  const q = els.search.value.trim().toLowerCase();
+  const lvl = els.level.value;
+  const tier = els.tier.value;
+  const col = els.college.value;
+
+  let filtered = RECORDS.filter(r => {
+    if (lvl && r.level !== lvl) return false;
+    if (tier && r.tier !== tier) return false;
+    if (col && r.college !== col) return false;
+    if (q) {
+      const hay = (r.code + ' ' + r.name + ' ' + r.course_type).toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+
+  if (sortKey) {
+    filtered.sort((a,b) => {
+      const av = a[sortKey].toLowerCase(), bv = b[sortKey].toLowerCase();
+      if (av < bv) return -1 * sortDir;
+      if (av > bv) return 1 * sortDir;
+      return 0;
+    });
+  }
+
+  render(filtered);
+}
+
+function render(filtered) {
+  els.body.innerHTML = '';
+  els.empty.style.display = filtered.length === 0 ? 'block' : 'none';
+
+  filtered.forEach(r => {
+    const tr = document.createElement('tr');
+    const tierClass = r.tier === 'Tier 1' ? 't1' : 't2';
+    tr.innerHTML = `<td>${escapeHtml(r.level)}</td>
+      <td><span class="tier-pill ${tierClass}">${escapeHtml(r.tier)}</span></td>
+      <td>${escapeHtml(r.college)}</td>
+      <td>${escapeHtml(r.course_type)}</td>
+      <td class="code">${escapeHtml(r.code)}</td>
+      <td>${escapeHtml(r.name)}</td>`;
+    els.body.appendChild(tr);
+  });
+
+  els.shownCount.textContent = filtered.length;
+  els.t1Count.textContent = filtered.filter(r => r.tier === 'Tier 1').length;
+  els.t2Count.textContent = filtered.filter(r => r.tier === 'Tier 2').length;
+  els.ugCount.textContent = filtered.filter(r => r.level === 'Undergraduate').length;
+  els.gradCount.textContent = filtered.filter(r => r.level === 'Graduate').length;
+
+  // college bars
+  const counts = {};
+  colleges.forEach(c => counts[c] = 0);
+  filtered.forEach(r => counts[r.college] = (counts[r.college] || 0) + 1);
+  const maxCount = Math.max(1, ...Object.values(counts));
+  const sortedColleges = [...colleges].sort((a,b) => counts[b] - counts[a]);
+
+  els.collegeBars.innerHTML = sortedColleges.map(c => `
+    <div class="bar-row">
+      <div class="rlabel"><span>${escapeHtml(c)}</span><b>${counts[c]}</b></div>
+      <div class="bar-track"><div class="bar-fill" style="width:${(counts[c]/maxCount*100).toFixed(1)}%"></div></div>
+    </div>
+  `).join('');
+}
+
+document.querySelectorAll('thead th').forEach(th => {
+  th.addEventListener('click', () => {
+    const key = th.dataset.key;
+    if (sortKey === key) { sortDir *= -1; } else { sortKey = key; sortDir = 1; }
+    applyFilters();
+  });
+});
+
+[els.search, els.level, els.tier, els.college].forEach(el => {
+  el.addEventListener('input', applyFilters);
+  el.addEventListener('change', applyFilters);
+});
+
+els.resetBtn.addEventListener('click', () => {
+  els.search.value = ''; els.level.value = ''; els.tier.value = ''; els.college.value = '';
+  sortKey = null; sortDir = 1;
+  applyFilters();
+});
+
+applyFilters();
+</script>
+</body>
+</html>
