@@ -9,6 +9,8 @@
 * { box-sizing:border-box; }
 body { margin:0; background:#F7F9FA; color:var(--charcoal); font-family: Inter, Aptos, Arial, sans-serif; line-height:1.35; }
 .wrap { max-width:1320px; margin:0 auto; padding:28px 32px 50px; }
+.home-btn{display:inline-block;margin-bottom:18px;padding:9px 14px;border-radius:999px;background:#005035;color:#fff;text-decoration:none;font-size:13px;font-weight:800;box-shadow:0 6px 14px rgba(15,23,42,.10)}
+.home-btn:hover{background:#00351f}
 .hero { border:1px solid var(--border); border-radius:20px; padding:24px 28px; background:linear-gradient(135deg,#fff 0%, #fff 55%, var(--pale-green) 100%); }
 .hero h1 { margin:0; font-size:28px; letter-spacing:-.03em; color:var(--green); }
 .hero p { margin:8px 0 0; max-width:780px; color:#334155; font-size:14px; }
@@ -57,6 +59,7 @@ body { margin:0; background:#F7F9FA; color:var(--charcoal); font-family: Inter, 
 </head>
 <body>
 <div class="wrap">
+  <a class="home-btn" href="../index.html">← Back to Dashboard Hub</a>
   <section class="hero">
     <h1>AI Landscape by College</h1>
     <p>Each card summarizes one college's AI-signal footprint in the current 2026 course catalog: total records, Tier 1/Tier 2 mix, penetration within that college's scanned courses, and 2026 growth.</p>
@@ -65,75 +68,20 @@ body { margin:0; background:#F7F9FA; color:var(--charcoal); font-family: Inter, 
   <div class="legend"><span><i class="sw t1"></i>Tier 1: AI in title</span><span><i class="sw t2"></i>Tier 2: AI in description</span></div>
 
   <div class="grid">
-    <div class="card">
-      <div class="card-head"><h3>Computing &amp; Informatics</h3><div class="total-num">59</div></div>
-      <span class="stage-pill gold">ACCELERATING</span>
-      <div class="stacked"><span class="t1" style="width:61.02%"></span><span class="t2" style="width:38.98%"></span></div>
-      <div class="mini-row"><span>36 Tier 1</span><span>23 Tier 2</span></div>
-      <div class="stat-grid"><div class="stat"><div class="n">13.3%</div><div class="l">Penetration</div></div><div class="stat"><div class="n">23</div><div class="l">2026 additions</div></div><div class="stat"><div class="n">21 / 38</div><div class="l">UG / Grad</div></div><div class="stat"><div class="n">445</div><div class="l">Courses scanned</div></div></div>
-      <p class="interp">Largest current footprint and strongest current-year growth; highest penetration of any college.</p>
-    </div>
-    <div class="card">
-      <div class="card-head"><h3>Engineering</h3><div class="total-num">25</div></div>
-      <span class="stage-pill">EXPANDING</span>
-      <div class="stacked"><span class="t1" style="width:40.00%"></span><span class="t2" style="width:60.00%"></span></div>
-      <div class="mini-row"><span>10 Tier 1</span><span>15 Tier 2</span></div>
-      <div class="stat-grid"><div class="stat"><div class="n">2.4%</div><div class="l">Penetration</div></div><div class="stat"><div class="n">1</div><div class="l">2026 additions</div></div><div class="stat"><div class="n">10 / 15</div><div class="l">UG / Grad</div></div><div class="stat"><div class="n">1,058</div><div class="l">Courses scanned</div></div></div>
-      <p class="interp">AI activity is present and spread across multiple prior years, but less concentrated in 2026 specifically.</p>
-    </div>
-    <div class="card">
-      <div class="card-head"><h3>Humanities, Earth &amp; Social Sciences</h3><div class="total-num">18</div></div>
-      <span class="stage-pill gold">ACCELERATING</span>
-      <div class="stacked"><span class="t1" style="width:55.56%"></span><span class="t2" style="width:44.44%"></span></div>
-      <div class="mini-row"><span>10 Tier 1</span><span>8 Tier 2</span></div>
-      <div class="stat-grid"><div class="stat"><div class="n">0.8%</div><div class="l">Penetration</div></div><div class="stat"><div class="n">12</div><div class="l">2026 additions</div></div><div class="stat"><div class="n">13 / 5</div><div class="l">UG / Grad</div></div><div class="stat"><div class="n">2,237</div><div class="l">Courses scanned</div></div></div>
-      <p class="interp">Fast recent expansion, concentrated in human-centered and critical AI areas.</p>
-    </div>
-    <div class="card">
-      <div class="card-head"><h3>Business</h3><div class="total-num">10</div></div>
-      <span class="stage-pill gold">ACCELERATING</span>
-      <div class="stacked"><span class="t1" style="width:100.00%"></span><span class="t2" style="width:0%"></span></div>
-      <div class="mini-row"><span>10 Tier 1</span><span>0 Tier 2</span></div>
-      <div class="stat-grid"><div class="stat"><div class="n">2.5%</div><div class="l">Penetration</div></div><div class="stat"><div class="n">8</div><div class="l">2026 additions</div></div><div class="stat"><div class="n">5 / 5</div><div class="l">UG / Grad</div></div><div class="stat"><div class="n">407</div><div class="l">Courses scanned</div></div></div>
-      <p class="interp">Strong recent catalog movement; every AI-signal record here is Tier 1 — AI is named directly in the title.</p>
-    </div>
-    <div class="card">
-      <div class="card-head"><h3>Education</h3><div class="total-num">4</div></div>
-      <span class="stage-pill muted">EMERGING</span>
-      <div class="stacked"><span class="t1" style="width:25.00%"></span><span class="t2" style="width:75.00%"></span></div>
-      <div class="mini-row"><span>1 Tier 1</span><span>3 Tier 2</span></div>
-      <div class="stat-grid"><div class="stat"><div class="n">0.6%</div><div class="l">Penetration</div></div><div class="stat"><div class="n">2</div><div class="l">2026 additions</div></div><div class="stat"><div class="n">1 / 3</div><div class="l">UG / Grad</div></div><div class="stat"><div class="n">645</div><div class="l">Courses scanned</div></div></div>
-      <p class="interp">Small current footprint with recent dated activity; most signal is embedded in descriptions, not titles.</p>
-    </div>
-    <div class="card">
-      <div class="card-head"><h3>Arts + Architecture</h3><div class="total-num">1</div></div>
-      <span class="stage-pill muted">EMERGING</span>
-      <div class="stacked"><span class="t1" style="width:0%"></span><span class="t2" style="width:100.00%"></span></div>
-      <div class="mini-row"><span>0 Tier 1</span><span>1 Tier 2</span></div>
-      <div class="stat-grid"><div class="stat"><div class="n">0.2%</div><div class="l">Penetration</div></div><div class="stat"><div class="n">0</div><div class="l">2026 additions</div></div><div class="stat"><div class="n">0 / 1</div><div class="l">UG / Grad</div></div><div class="stat"><div class="n">646</div><div class="l">Courses scanned</div></div></div>
-      <p class="interp">AI appears in the scan, but at low volume, and only as a Tier 2 signal.</p>
-    </div>
-    <div class="card empty">
-      <div class="card-head"><h3>Science</h3><div class="total-num">0</div></div>
-      <span class="stage-pill muted">NO AI SIGNAL DETECTED</span>
-      <div class="stacked" style="background:#EEF2F6"></div><div class="mini-row"><span>&nbsp;</span><span>&nbsp;</span></div>
-      <div class="stat-grid"><div class="stat"><div class="n">0.0%</div><div class="l">Penetration</div></div><div class="stat"><div class="n">0</div><div class="l">2026 additions</div></div><div class="stat"><div class="n">—</div><div class="l">UG / Grad</div></div><div class="stat"><div class="n">680</div><div class="l">Courses scanned</div></div></div>
-      <p class="interp">No course-title or description AI signal found in this dataset. Worth a manual check with the college if this is unexpected.</p>
-    </div>
-    <div class="card empty">
-      <div class="card-head"><h3>Health &amp; Human Services</h3><div class="total-num">0</div></div>
-      <span class="stage-pill muted">NO AI SIGNAL DETECTED</span>
-      <div class="stacked" style="background:#EEF2F6"></div><div class="mini-row"><span>&nbsp;</span><span>&nbsp;</span></div>
-      <div class="stat-grid"><div class="stat"><div class="n">0.0%</div><div class="l">Penetration</div></div><div class="stat"><div class="n">0</div><div class="l">2026 additions</div></div><div class="stat"><div class="n">—</div><div class="l">UG / Grad</div></div><div class="stat"><div class="n">533</div><div class="l">Courses scanned</div></div></div>
-      <p class="interp">No course-title or description AI signal found in this dataset. Worth a manual check with the college if this is unexpected.</p>
-    </div>
+    <div class="card"><div class="card-head"><h3>Computing &amp; Informatics</h3><div class="total-num">59</div></div><span class="stage-pill gold">ACCELERATING</span><div class="stacked"><span class="t1" style="width:61.02%"></span><span class="t2" style="width:38.98%"></span></div><div class="mini-row"><span>36 Tier 1</span><span>23 Tier 2</span></div><div class="stat-grid"><div class="stat"><div class="n">13.3%</div><div class="l">Penetration</div></div><div class="stat"><div class="n">23</div><div class="l">2026 additions</div></div><div class="stat"><div class="n">21 / 38</div><div class="l">UG / Grad</div></div><div class="stat"><div class="n">445</div><div class="l">Courses scanned</div></div></div><p class="interp">Largest current footprint and strongest current-year growth; highest penetration of any college.</p></div>
+    <div class="card"><div class="card-head"><h3>Engineering</h3><div class="total-num">25</div></div><span class="stage-pill">EXPANDING</span><div class="stacked"><span class="t1" style="width:40.00%"></span><span class="t2" style="width:60.00%"></span></div><div class="mini-row"><span>10 Tier 1</span><span>15 Tier 2</span></div><div class="stat-grid"><div class="stat"><div class="n">2.4%</div><div class="l">Penetration</div></div><div class="stat"><div class="n">1</div><div class="l">2026 additions</div></div><div class="stat"><div class="n">10 / 15</div><div class="l">UG / Grad</div></div><div class="stat"><div class="n">1,058</div><div class="l">Courses scanned</div></div></div><p class="interp">AI activity is present and spread across multiple prior years, but less concentrated in 2026 specifically.</p></div>
+    <div class="card"><div class="card-head"><h3>Humanities, Earth &amp; Social Sciences</h3><div class="total-num">18</div></div><span class="stage-pill gold">ACCELERATING</span><div class="stacked"><span class="t1" style="width:55.56%"></span><span class="t2" style="width:44.44%"></span></div><div class="mini-row"><span>10 Tier 1</span><span>8 Tier 2</span></div><div class="stat-grid"><div class="stat"><div class="n">0.8%</div><div class="l">Penetration</div></div><div class="stat"><div class="n">12</div><div class="l">2026 additions</div></div><div class="stat"><div class="n">13 / 5</div><div class="l">UG / Grad</div></div><div class="stat"><div class="n">2,237</div><div class="l">Courses scanned</div></div></div><p class="interp">Fast recent expansion, concentrated in human-centered and critical AI areas.</p></div>
+    <div class="card"><div class="card-head"><h3>Business</h3><div class="total-num">10</div></div><span class="stage-pill gold">ACCELERATING</span><div class="stacked"><span class="t1" style="width:100.00%"></span><span class="t2" style="width:0%"></span></div><div class="mini-row"><span>10 Tier 1</span><span>0 Tier 2</span></div><div class="stat-grid"><div class="stat"><div class="n">2.5%</div><div class="l">Penetration</div></div><div class="stat"><div class="n">8</div><div class="l">2026 additions</div></div><div class="stat"><div class="n">5 / 5</div><div class="l">UG / Grad</div></div><div class="stat"><div class="n">407</div><div class="l">Courses scanned</div></div></div><p class="interp">Strong recent catalog movement; every AI-signal record here is Tier 1 — AI is named directly in the title.</p></div>
+    <div class="card"><div class="card-head"><h3>Education</h3><div class="total-num">4</div></div><span class="stage-pill muted">EMERGING</span><div class="stacked"><span class="t1" style="width:25.00%"></span><span class="t2" style="width:75.00%"></span></div><div class="mini-row"><span>1 Tier 1</span><span>3 Tier 2</span></div><div class="stat-grid"><div class="stat"><div class="n">0.6%</div><div class="l">Penetration</div></div><div class="stat"><div class="n">2</div><div class="l">2026 additions</div></div><div class="stat"><div class="n">1 / 3</div><div class="l">UG / Grad</div></div><div class="stat"><div class="n">645</div><div class="l">Courses scanned</div></div></div><p class="interp">Small current footprint with recent dated activity; most signal is embedded in descriptions, not titles.</p></div>
+    <div class="card"><div class="card-head"><h3>Arts + Architecture</h3><div class="total-num">1</div></div><span class="stage-pill muted">EMERGING</span><div class="stacked"><span class="t1" style="width:0%"></span><span class="t2" style="width:100.00%"></span></div><div class="mini-row"><span>0 Tier 1</span><span>1 Tier 2</span></div><div class="stat-grid"><div class="stat"><div class="n">0.2%</div><div class="l">Penetration</div></div><div class="stat"><div class="n">0</div><div class="l">2026 additions</div></div><div class="stat"><div class="n">0 / 1</div><div class="l">UG / Grad</div></div><div class="stat"><div class="n">646</div><div class="l">Courses scanned</div></div></div><p class="interp">AI appears in the scan, but at low volume, and only as a Tier 2 signal.</p></div>
+    <div class="card empty"><div class="card-head"><h3>Science</h3><div class="total-num">0</div></div><span class="stage-pill muted">NO AI SIGNAL DETECTED</span><div class="stacked" style="background:#EEF2F6"></div><div class="mini-row"><span>&nbsp;</span><span>&nbsp;</span></div><div class="stat-grid"><div class="stat"><div class="n">0.0%</div><div class="l">Penetration</div></div><div class="stat"><div class="n">0</div><div class="l">2026 additions</div></div><div class="stat"><div class="n">—</div><div class="l">UG / Grad</div></div><div class="stat"><div class="n">680</div><div class="l">Courses scanned</div></div></div><p class="interp">No course-title or description AI signal found in this dataset. Worth a manual check with the college if this is unexpected.</p></div>
+    <div class="card empty"><div class="card-head"><h3>Health &amp; Human Services</h3><div class="total-num">0</div></div><span class="stage-pill muted">NO AI SIGNAL DETECTED</span><div class="stacked" style="background:#EEF2F6"></div><div class="mini-row"><span>&nbsp;</span><span>&nbsp;</span></div><div class="stat-grid"><div class="stat"><div class="n">0.0%</div><div class="l">Penetration</div></div><div class="stat"><div class="n">0</div><div class="l">2026 additions</div></div><div class="stat"><div class="n">—</div><div class="l">UG / Grad</div></div><div class="stat"><div class="n">533</div><div class="l">Courses scanned</div></div></div><p class="interp">No course-title or description AI signal found in this dataset. Worth a manual check with the college if this is unexpected.</p></div>
   </div>
 
   <section class="panel" style="margin-top:20px">
     <h3>College growth heat map by year</h3>
     <div class="stage-key"><strong>Stage key:</strong><span class="stage-pill table-pill muted">Emerging</span><span class="stage-pill table-pill">Expanding</span><span class="stage-pill table-pill gold">Accelerating</span><span class="stage-pill table-pill muted">No signal detected</span></div>
-    <div class="appendix" style="max-height:520px">
-      <table class="heat-table"><thead><tr><th>College</th><th>Stage</th><th class="num">2017</th><th class="num">2018</th><th class="num">2019</th><th class="num">2020</th><th class="num">2021</th><th class="num">2022</th><th class="num">2023</th><th class="num">2024</th><th class="num">2025</th><th class="num">2026</th></tr></thead><tbody>
+    <div class="appendix" style="max-height:520px"><table class="heat-table"><thead><tr><th>College</th><th>Stage</th><th class="num">2017</th><th class="num">2018</th><th class="num">2019</th><th class="num">2020</th><th class="num">2021</th><th class="num">2022</th><th class="num">2023</th><th class="num">2024</th><th class="num">2025</th><th class="num">2026</th></tr></thead><tbody>
 <tr><td><strong>Computing &amp; Informatics</strong><br><span class="small-muted">39 dated records, 2017-2026</span></td><td><span class="stage-pill table-pill gold">Accelerating</span></td><td class="heat" style="background:rgba(0,80,53,0.11);color:#102A1F">1</td><td class="heat" style="background:rgba(0,80,53,0.18);color:#102A1F">3</td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:rgba(0,80,53,0.18);color:#102A1F">3</td><td class="heat" style="background:rgba(0,80,53,0.11);color:#102A1F">1</td><td class="heat" style="background:rgba(0,80,53,0.15);color:#102A1F">2</td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:rgba(0,80,53,0.22);color:#102A1F">4</td><td class="heat" style="background:rgba(0,80,53,0.15);color:#102A1F">2</td><td class="heat" style="background:rgba(0,80,53,0.88);color:#fff">23</td></tr>
 <tr><td><strong>Engineering</strong><br><span class="small-muted">20 dated records, 2017-2026</span></td><td><span class="stage-pill table-pill">Expanding</span></td><td class="heat" style="background:rgba(0,80,53,0.15);color:#102A1F">2</td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:rgba(0,80,53,0.11);color:#102A1F">1</td><td class="heat" style="background:rgba(0,80,53,0.11);color:#102A1F">1</td><td class="heat" style="background:rgba(0,80,53,0.15);color:#102A1F">2</td><td class="heat" style="background:rgba(0,80,53,0.22);color:#102A1F">4</td><td class="heat" style="background:rgba(0,80,53,0.18);color:#102A1F">3</td><td class="heat" style="background:rgba(0,80,53,0.29);color:#102A1F">6</td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:rgba(0,80,53,0.11);color:#102A1F">1</td></tr>
 <tr><td><strong>Humanities, Earth &amp; Social Sciences</strong><br><span class="small-muted">15 dated records, 2017-2026</span></td><td><span class="stage-pill table-pill gold">Accelerating</span></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:rgba(0,80,53,0.11);color:#102A1F">1</td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:rgba(0,80,53,0.11);color:#102A1F">1</td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:rgba(0,80,53,0.11);color:#102A1F">1</td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:rgba(0,80,53,0.50);color:#fff">12</td></tr>
@@ -142,9 +90,7 @@ body { margin:0; background:#F7F9FA; color:var(--charcoal); font-family: Inter, 
 <tr><td><strong>Arts + Architecture</strong><br><span class="small-muted">1 dated records, 2017-2026</span></td><td><span class="stage-pill table-pill muted">Emerging</span></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:rgba(0,80,53,0.11);color:#102A1F">1</td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td></tr>
 <tr><td><strong>Science</strong><br><span class="small-muted">0 dated records, 2017-2026</span></td><td><span class="stage-pill table-pill muted">No signal detected</span></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td></tr>
 <tr><td><strong>Health &amp; Human Services</strong><br><span class="small-muted">0 dated records, 2017-2026</span></td><td><span class="stage-pill table-pill muted">No signal detected</span></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td><td class="heat" style="background:#F8FAFC;color:#102A1F"></td></tr>
-</tbody></table>
-    </div>
-    <div class="growth-note"><strong>Legacy effective-term range:</strong> 1 legacy record (Computing &amp; Informatics). Records without effective years remain included in the overall AI-signal totals but are excluded from year-by-year heat map cells.</div>
+</tbody></table></div><div class="growth-note"><strong>Legacy effective-term range:</strong> 1 legacy record (Computing &amp; Informatics). Records without effective years remain included in the overall AI-signal totals but are excluded from year-by-year heat map cells.</div>
   </section>
 
   <div class="footer-note">Penetration = AI-signal records ÷ scanned course records in that college. 2026 additions reflect records with a usable effective date in 2026; colleges with sparse dated records should be read with that caveat. This measures catalog-level signals, not enrollment, section capacity, or instructional depth.</div>
