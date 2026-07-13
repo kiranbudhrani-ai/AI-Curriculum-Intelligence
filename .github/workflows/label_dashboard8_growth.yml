@@ -1,0 +1,22 @@
+name: Label Dashboard 8 growth metric
+
+on:
+  push:
+    paths:
+      - .github/workflows/label_dashboard8_growth.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  label-growth:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add Growth in 2026 beside 51.7
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('resources/dashboard_8_provost_report.html')
+          text = path.read_text(encoding='utf-
