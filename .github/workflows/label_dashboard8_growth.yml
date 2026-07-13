@@ -19,4 +19,26 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           path = Path('resources/dashboard_8_provost_report.html')
-          text = path.read_text(encoding='utf-
+          text = path.read_text(encoding='utf-8')
+          old = '<div class="kpi gold highlight"><div class="val">51.7%</div><div class="lbl"><strong>46 of 89</strong> dated AI-signal records became effective in 2026</div></div>'
+          new = '<div class="kpi gold highlight"><div class="val">51.7% <span style="font-size:14px;font-weight:700;color:#8a6d3b;vertical-align:middle">Growth in 2026</span></div><div class="lbl"><strong>46 of 89</strong> dated AI-signal records became effective in 2026</div></div>'
+          if new in text:
+              print('Already applied')
+          elif old in text:
+              text = text.replace(old, new, 1)
+              path.write_text(text, encoding='utf-8')
+              print('Updated Dashboard 8 growth label')
+          else:
+              raise SystemExit('Could not find Dashboard 8 highlight card pattern')
+          PY
+      - name: Commit change
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet; then
+            echo "No changes to commit"
+          else
+            git add resources/dashboard_8_provost_report.html
+            git commit -m "Add Growth in 2026 label to Dashboard 8 highlight card"
+            git push
+          fi
